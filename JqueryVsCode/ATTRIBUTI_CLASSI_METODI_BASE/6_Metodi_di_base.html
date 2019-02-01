@@ -1,0 +1,61 @@
+<html>
+    <head>
+   
+
+    </head>
+    <body>
+        <h2>Metodi di base</h2>
+  
+        <div id="contenitore">
+          <ul id="menu" style="width:20%">
+            <li>Voce di menu 1 </li>
+            <li id="primo">Voce di menu 2
+              <ul>
+                <li>Voce di sottomenu 1 </li>
+                <li>Voce di sottomenu 2 </li>
+              </ul>
+            </li>
+            <li>Voce di menu 3
+              <ul>
+                <li>Voce di sottomenu 3 </li>
+              </ul>
+            </li>
+            <li>Voce di menu 4 </li>
+        </ul>
+      </div>
+    
+        <!--script-->
+        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+        <script>
+          $(document).ready(function(){
+            debugger;
+              //.get() che restituirà una collezione di elementi
+              var liste = $("#menu li").get(); //il get è implicito...
+              //equivalente javascript:
+              var liste2 = document.getElementById("menu").getElementsByTagName("li");
+              var obj = $("#menu li").get(0); //solo il primo elemento della lista
+          
+            // due modi per determinare l'html contenuto in un elemento lista
+
+            var html = $("#menu li").get(0).innerHTML; // con JavaScript nativo
+            var html = $("#menu li").eq(0).html(); // con metodo jQuery
+
+            var liste3 = $("h1,h2,p"); //ordine elementi: <h1>,<h1>,<h2>,<p>,<p> vedi sezione lezione 6 in basso
+              var  indice=  $("#menu li").index(document.getElementById("primo")); // index ritorna l'indice dell'elemento 
+              var  indice2=  $("#menu li").index( $("#primo") );
+
+                //ciclare
+                $("#menu li").each(function () {
+                    var id = this.id; 
+                });
+
+                $("#menu li").each(function (i,el) {
+                var index = i; //0,1,2 etc
+                var id = $(el).attr("id"); // l'id dell'elemento con jQuery
+                });
+          });
+             
+        </script>
+    </body>
+
+</html>
