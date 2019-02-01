@@ -1,0 +1,50 @@
+<html>
+    <head>
+   
+
+    </head>
+    <body>
+        <h2>Selettori di base gerarchici</h2>
+        
+        <a>link 1</a>
+        <a>link 2</a>
+        <a class="external">link 3</a>
+        <a class="external">link 4</a>
+        <div id="blocco">mio blocco
+            <div class="miaClasse">elemento cls interno</div>
+            <a >link  in blocco</a>
+        </div>
+        <ul>
+            <li>discendente</li>
+            <li>discendente
+                <li>discendente del discendente</li>
+            </li>
+            <li>discendente</li>
+
+
+        </ul>
+
+        <p>Primo paragrafo</p>
+        <div>
+        <p>Secondo paragrafo</p>
+        </div>
+        <p>Terzo paragrafo</p>
+        <!--script-->
+        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                debugger;
+                //seletttori:
+              var ListaAncore=  $("a"); //tutti i link nel documento
+              var ListaAncore2=  $("a.external"); //solo i link con classe "external"
+              var Lista=   $("#blocco,a.external"); //possiamo indicare più selettori contemporaneamente
+              var ListaAncore3=   $("#blocco a"); // Prendo tutti i link (<a>) all'interno dell'elemento con id "blocco"
+                var Lista2=    $("ul > li");// solo gli elementi lista diretti discendenti del tag ul ??
+                var Lista3=    $("ul li");// tutti gli elementi mli contenuti nel tag ul ??
+                var Lista4=    $("body p");// solo gli elementi lista diretti discendenti del tag ul
+                var Lista5=    $("body > p");// solo gli elementi lista diretti discendenti del tag ul
+            });
+        </script>
+    </body>
+
+</html>

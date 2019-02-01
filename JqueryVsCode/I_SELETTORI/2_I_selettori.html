@@ -1,0 +1,37 @@
+<html>
+    <head>
+   
+
+    </head>
+    <body>
+        <h2>Per un pugno di $: il motore di jQuery</h2>
+<div id="mioId">elemento
+
+    <div class="miaClasse">elemento cls interno</div>
+
+</div>
+<div class="miaClasse">elemento cls1</div>
+<div class="miaClasse">elemento cls2</div>
+<div id="contenitore"></div>
+
+ <!--script-->
+ <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+ <script>
+     $(document).ready(function(){
+        debugger;
+         var elemento = $("#mioId"); //l'elemento con specifico id
+         var elementi = $(".miaClasse"); //tutti gli elementi con attributo class "miaClasse" 
+         var elementi2 = $(".miaClasse, #mioId, ul#mioMenu li"); //cerca una classe, un id e gli elementi di una specifica lista puntata, in questo caso 3 elementi
+         var elementi4 = $(".miaClasse", document.getElementById('mioId'));//Tutti gli elementi con classe "miaClasse" dentro l'elemento DOM con id mioId
+
+         //Così è possibile creare un nuovo elemento nel DOM semplicemente passandone il tag
+         var nuovoElemento = $("<div id='nuovoelemento'>nuovo ememento...</div>");
+         nuovoElemento.appendTo(document.body);
+
+         var blocco = $("<div><p>Esempio di elementi <strong>nidificati</strong></p></div>");
+         blocco.appendTo("#contenitore"); //inserisci dentro un altro elemento
+     });
+     </script>
+    </body>
+
+</html>

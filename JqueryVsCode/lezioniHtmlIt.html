@@ -1,0 +1,329 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+   <!--
+       tutorial su jquery:
+    https://www.w3schools.com/jquery/default.asp
+    https://www.html.it/guide/guida-jquery/
+-->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+          $("#Lez2").click(function(){
+            $("p").hide();
+            //Tutti gli elementi con classe "miaClasse" dentro l'elemento DOM con id mioId
+           var elem= $(".miaClasse",document.getElementById('mioId'));
+           debugger;
+            //Così è possibile creare un nuovo elemento nel DOM semplicemente passandone il tag
+           // $("<div id='nuovoelemento'></div>");
+
+            var blocco = $("<div><p>Esempio di elementi <strong>nidificati</strong></p></div>");
+            //blocco.appendTo(document.body); //inserisci nel body
+blocco.appendTo("#contenitore"); //inserisci dentro un altro elemento
+          });
+          $("#Lez3").click(function(){
+              //seletttori:
+              $("a");          //tutti i link nel documento
+                $("#blocco");    //seleziona un singolo elemento con id "blocco"
+                $("a.external"); //solo i link con classe "external"
+                $("#blocco,a.external"); //possiamo indicare più selettori contemporaneamente
+                // Prendo tutti i link (<a>) all'interno
+                //  dell'elemento con id "blocco"
+                $("#blocco a");
+                // solo gli elementi lista diretti discendenti del tag ul
+                $("ul > li");
+                
+          });
+          $("#Lez4").click(function(){
+              //selezione di attributi
+            $("a[target='_blank']"); //tutti i link che si aprono in nuove finestre
+            $("a[title^='nuova']"); //link con titolo che inizia per "nuova"
+            $("a[title$='pagina']"); //link con titolo che finisce per "pagina"
+            $("a[target!='_blank']"); //link che non aprano una nuova pagina del browser
+            $("a[target='_blank'][title='nuova pagina']");
+          });
+          $("#Lez5").click(function(){
+              //filtrare le selezioni
+            $("#menu li:first-child");
+            $("#menu li:last-child"); 
+            $("#menu li:only-child"); //trova solo gli elemti singoli
+            $("#menu li:nth-child(even)");
+            $("#menu li:nth-child(odd)");
+            $("#menu li:nth-child(3)");
+            $("#menu li:nth-child(3 + 1)");
+
+            $("div:hidden"); //tutti i tag div nascosti
+            $("#menu li:has(ul)"); //tutte voci di menu con sottomenu
+            $("a:not(.external)"); //tutti i link eccetto quelli con classe external
+
+            $("#menu li:first"); //il primo tag lista
+            $("#menu li:odd"); //tutti gli elementi dispari di una lista
+            $("#menu li:eq(3)"); // il terzo elemento di una lista
+
+            $(":disabled").removeAttr("disabled");
+
+
+
+          });
+          $("#Lez6").click(function(){
+              //.get() che restituirà una collezione di elementi
+              var liste = $("#menu li").get();
+              //equivalente javascript:
+              var liste = document.getElementById("menu").getElementsByTagName("li");
+              var liste = $("#menu li").get(0); //solo il primo elemento della lista
+           
+            // due modi per determinare l'html contenuto in un elemento lista
+
+            var html = $("#menu li").get(0).innerHTML; // con JavaScript nativo
+            var html = $("#menu li").eq(0).html(); // con metodo jQuery
+
+            $("h1,h2,p"); //ordine elementi: <h1>,<h1>,<h2>,<p>,<p> vedi sezione lezione 6 in basso
+                $("#menu li").index(document.getElementById("primo")); // index ritorna l'indice dell'elemento 
+                $("#menu li").index( $("#primo") );
+
+                //ciclare
+                $("#menu li").each(function () {
+                    var id = this.id; 
+                });
+
+                $("#menu li").each(function (i,el) {
+                var index = i; //0,1,2 etc
+                var id = $(el).attr("id"); // l'id dell'elemento con jQuery
+                });
+          });
+
+          $("#Lez7").click(function(){
+            //attributi
+            $("a#mioLink").attr("href"); //restituisce il valore di href
+            $("a#mioLink").attr("href","http://www.html.it"); //imposta il valore di href
+            $("a#mioLink").attr("href",function () {  }); //imposta il valore di href in base alla funzione
+
+                $("a#mioLink").attr({
+                "href":"http://www.html.it",
+                "target":"_blank"
+                }); //imposta il valore di href e del target
+            
+            //raccogliere la lista degli URL da una serie di tag a
+
+            var ListaURL = []; //array di base
+
+            $("#menu li a").each(function (i,el) {
+                ListaURL.push($(el).attr("href"))
+            });
+
+            //impostare il link di una serie di tag a in base alla posizione
+
+            var ListaURL = ["http://www.html.it","http://www.google.it","http://www.yahoo.it"];
+
+            $("#menu li a").attr("href",function (i,el) {
+                return ListaURL[i];
+            });
+
+              //rimuovere l'attributo target da tutti gli elementi della collezione
+            $("#menu li a").removeAttr("target");              
+          });
+
+          $("#Lez8").click(function(){
+            //gestione classi
+            //Uno dei problemi maggiori legati alla manipolazione degli attributi 
+            //riguarda le classi ed in particolare la possibiltà di associarne più d’una ad un elemento 
+            //con la conseguente necessità di poterle eliminare singolarmente senza toccare le altre
+            //.hasClass(): metodo di controllo, ritorna true se l’elemento ha uan specifica classe
+            //.addClass(): aggiungi una classe agli elementi
+            //.removeClass(): rimuove una classe agli elementi
+            // .toggleClass(): aggiunge una classe se già non presente, altrimenti la toglie
+
+            //Per tutti questi metodi è possibile indicare, oltre ad una singola classe, 
+            //anche due o più classi separate da una spazio ("miaClasse1 miaClasse2"). 
+            //Inoltre .toggleClass() permette anche di indicare un secondo parametro (true o false) per definire se aggiungere o togliere una classe
+            
+            //$("#menu li").toggleClass("miaClasse",true); //aggiungi sempre la classe
+
+
+            
+            $("p").text(); // "testo del paragrafo"
+            $("p").html(); // "testo del <strong>paragrafo</strong>"
+
+            //<p>testo del <strong>paragrafo</strong></p>
+            //imposta testo
+            $("p").text("Nuovo testo");
+            $("p").html("Nuovo testo con <strong>HTML</strong>");
+
+            //attraverso .val() sarete in grado di ottenere ed impostare i valore inseriti dall’utente nel form
+            //sia per quanto riguarda i campi di testo (text, password, textarea), sia per i campi select che per i campi radio e checkbox
+            //In modo analogo, per impostare i campi di un form basterà passare a .val() 
+            //una stringa oppure un array di stringhe nel caso di valori multipli per radio checkbox e select
+          });
+
+          
+          $("#Lez9").click(function(){
+            //Traversing
+            //potremmo pensare di utilizzare una collezione come base per attraversare dinamicamente gli altri elementi del DOM e lavorarvi
+            //.filter() che accetta come argomento sia un selettore CSS, sia una funzione
+            $("#contenitore a").filter(".external"); //restituisce solo i  link con classe external
+                    //In alternativa si può definire una funzione che operi da filtro restituendo true o false
+          $("#contenitore a").filter(function () {
+            // this rappresenta un singolo elemento
+            return $(this).hasClass("external");
+            });
+            //Il metodo opposto a .filter() è .not(), che include tutti gli elementi che NON corrispondono al selettore indicato
+            $("#contenitore a").slice(0, 2) // solo il primo e secondo link
+            //Chiude il gruppo dei filtri .is(), che accetta un selettore CSS come argomento e restituisce true quando gli elementi rispettano le regole indicate
+            $("#contenitore a").each(function () {
+
+            if ($(this).is(".external")) {
+                    //codice per link esterni
+            } else {
+                    //codice per link interno
+            }
+
+            });
+          });
+  
+
+          $("#Lez10").click(function(){
+            //Selezionare elementi del DOM
+
+            //end ripristina la lista iniziale
+            var lista = $("#menu li"); //tutti i tag li
+            lista.find("a"); //tutti i tag a contenuti nei tag li
+            lista.end(); //ripristino i tag li
+            
+            $("#menu").find("li"); // tutti i tag li
+            $("#menu").children("li"); // tutti i tag li del primo livello
+
+            //.parent() si ferma al primo livello trovato, mentre .parents() risale tutto l’albero
+            $("#inizio").parent("ul")
+            $("#inizio").parents("ul")
+            
+            $(this).closest("li"); //il primo li genitore trovato anche se è this
+            $("#inizio").next("li")
+            $("#inizio").prev("li")
+            $("#inizio").nextAll("li")
+            $("#inizio").siblings("li")
+          });
+
+          $("#Lez11").click(function(){
+            //inserire nuovi elementi
+            //seleziono un elemento e vi inserisco un nodo
+            $("#menu").append("<li>lista</li>"); 
+            //inserisco un nuovo nodo nell'elemento selezionato
+            $("<li>lista</li>").appendTo("#menu"); 
+            //sposta i nodi da una lista all'altra
+            $("#menu2 li").appendTo("#menu"); 
+            //Analogamente, è possibile anche inserire nuovi nodi o spostarli all’inizio di un elemento utilizzando .prepend() e .prependTo()
+
+          });
+
+          $("#Lez12").click(function(){
+            //inserire elementi contigui ed avvolgere elementi
+            //due modi per inserire una nuova lista DOPO una già presente
+            $("#menu").after("<ul id='menu2'></ul>");
+            $("<ul id='menu2'></ul>").insertAfter("#menu");
+            //due modi per inserire una nuova lista PRIMA di una già presente
+            $("#menu").before("<ul id='menu2'></ul>");
+            $("<ul id='menu2'></ul>").insertBefore("#menu");
+            //avvolgere elementi:
+            $("p").wrap("<div></div>"); //avvolge un p in un div (un div avvolge ciascun paragrafo)
+            $("p").wrap(document.createElement("div"));
+            //questo avvolge tutti i p con un unico div
+            $("p").wrapAll("<div></div>");
+            $("p").wrapAll(document.createElement("div"));
+
+            //wrappa internamente:
+            //<p>Testo</p>
+            $("p").wrapInner("<span></span>");
+            //<p><span>Testo</span></p>
+          });
+
+          $("#Lez13").click(function(){
+           //Sostituire, rimuovere, svuotare e duplicare
+           //rimpiazza l'elemento segnaposto
+           //rimpiazza con nuovo contenuto
+            $("#segnaposto").replaceWith("<p>Nuovo contenuto</p>");
+            //rimpiazza con contenuto già esistente
+            $("#segnaposto").replaceWith($("p#nuovoContenuto"));
+                //svuota elemento di tutto il suo contenuto
+            $("#messaggio").empty();
+
+            //rimozione
+            $("table #riga1").remove();
+            //equivale a 
+            $("table tr").remove("#riga1");
+
+            //clonare una lista
+            $("#menu li").clone().appendTo("#menu2");
+            //clonare una lista con gli eventi JavaScript associati
+            $("#menu li").clone(true).appendTo("#menu2");
+          });
+
+          $("#Lez14").click(function(){
+          //Manipolare gli stili
+          $("a").css("color"); //restituisce il colore esadecimale del primo elemento link
+            $("a").css("color","#FF0000"); //imposta il colore dei link
+            $("a").css({
+                "color" : "#FF0000", //imposta il colore
+                "display" : "block" // imposta la visualizzazione
+        });
+
+        //Oltre a .css(), il framework dispone di alcuni metodi specifici relativi alle dimensioni e 
+        //alla posizione degli elementi, che permettono di impostare o ottenere alcuni stili con facilità
+        /*
+        .width()
+.height()	permette di trovare o impostare larghezza e altezza complessiva di un elemento in pixel
+.innerWidth()
+.innerHeight()	larghezza e altezza interne di un elemento (include il padding, non conta bordi e margini)
+.outerWidth()
+.outerHeight()	larghezza e altezza esterne di un elemento (conta bordi e padding, opzionalmente i margini passando l’argomento true)
+.offset()	ritorna un oggetto con la distanza da sinistra e dall’alto dell’emento rispetto al documento
+.position()	come .offset() ma le distanze sono relative al contenitore più prossimo
+.scrollTop()
+.scrollLeft()	trova o imposta scroll dell’elemento rispetto al documento
+*/
+          });
+            
+        });
+        </script>
+</head>
+<body>
+    <!--Lez1-->
+   <div>LEZIONE 1</div>
+    <p>This is a paragraph.</p>
+    <p>This is another paragraph.</p>
+    <div id="contenitore">
+       
+    </div>
+    <div id="mioId">
+        <div></div>
+        <ul class="miaClasse">
+            <li></li>
+        </ul>
+    </div>
+    <!--Lez2-->
+   <div>LEZIONE 2</div>
+
+   <div>LEZIONE 6</div>
+        <h1></h1>
+        <h1></h1>
+        <p></p>
+
+        <h2></h2>
+
+        <p></p>
+
+    <button id="Lez2">Lez2</button>
+    <button id="Lez3">Lez3</button>
+    <button id="Lez4">Lez4</button>
+    <button id="Lez5">Lez5</button>
+    <button id="Lez6">Lez6</button>
+    <button id="Lez7">Lez7</button>
+    <button id="Lez8">Lez8</button>
+    <button id="Lez9">Lez9</button>
+    <button id="Lez10">Lez10</button>
+    <button id="Lez11">Lez11</button>
+    <button id="Lez12">Lez12</button>
+    <button id="Lez13">Lez13</button>
+</body>
+</html>

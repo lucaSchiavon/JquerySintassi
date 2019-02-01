@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+   <!--
+       tutorial su jquery:
+    https://www.w3schools.com/jquery/default.asp
+    https://www.html.it/guide/guida-jquery/
+-->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+        alert("DOM caricato!");
+        //qui si possono scrivere tutte le funzioni referenziando gli elementi html che
+        //sono visibili in quanto il dom è già stato caricato
+        });
+        //equivalente a quella di prima:
+        /*
+        $(function () {
+     alert("DOM caricato!");
+        });*/
+        window.onload = function () {
+     alert("Tutto il documento è stato caricato compresi fogli di stile, immagini Caricato!");
+     //qui oltre al dom sono stati caricati immagini e css
+};
+        </script>
+</head>
+<body>
+   
+</body>
+</html>

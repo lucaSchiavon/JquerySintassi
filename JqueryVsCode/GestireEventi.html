@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+   <!--
+       tutorial su jquery:
+    https://www.w3schools.com/jquery/default.asp
+    https://www.html.it/guide/guida-jquery/
+-->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("a").bind("click",function (event) {
+                alert($(this).attr("href"));
+            });
+//nel caso successivo clicchiamo sul tag strong a cui non vi è 
+//associato alcun evento, quindi javascript risale trva l'evento associato ad a e lo lancia
+//per capire quale è realmente l'elemento cliccato occorre usare la proprietà target dell'oggetto event
+            <a href="index.html"><strong>Testo</strong></a>
+            $("a").bind("click",function (event) {
+                alert($(this).attr("href"));
+            });
+            //Un’altra proprietà interessante dell’oggetto event è .type, che indica sotto forma di stringa il tipo di evento che è stato lanciato
+            function lanciaEvento (event) {
+                if (event.type == "click") {
+                        alert ("Click!");
+                } else {
+                        alert ("Un altro evento");
+                }
+            }
+
+$("a").bind("click focus blur",function (event) {
+     lanciaEvento(event);
+});
+            
+        });
+//inibire il comportamento di default per lanciare istruzioni ajax
+        $(":submit").bind("click",function (event) {
+	event.preventDefault(); //blocca l'evento di default
+	var action = $(this).parents("form").attr("action"); //determina il valore di action
+	//codice AJAX qui
+});
+//eventi che si possono usare:
+/*blur, focus, load, resize, scroll, unload, beforeunload, click, dblclick, mousedown, 
+mouseup, mousemove, mouseover, mouseout, mouseenter, mouseleave, change, select, submit, keydown, keypress, keyup, error*/
+
+$(":text").unbind(); // rimuovi tutti gli eventi dai campi di testo
+$(":text").unbind("blur focus"); //rimuovi gli handlers per gli eventi focus e blur
+$(":text").unbind("blur",blurFunction); // rimuovi uno specifico handler per l'evento blur
+
+
+//possiamo lanciare anche un evento specifico:
+$("#lanciaGalleria").bind("click",function (event) {
+		event.preventDefault();
+		$('a.galleria:first').trigger('click');
+});
+
+/*
+jQuery offre alcuni metodi specifici:
+
+.one(): funziona come .bind() ma esegue l’handler associato all’evento solo una volta
+ .hover(): accetta due funzioni, una per quando il mouse è sopra un elemento ed una per quando lo lascia
+.toggle(): accetta una o più funzioni come argomento, lanciandole in sequenza ad ogni click
+*/
+$("a").click(function () {
+		//codice da associare
+});
+
+//arrivato a la coda degli effetti
+        </script>
+</head>
+<body>
+    <a href="link.html" onclick="return false;">clicca qui</a>
+</body>
+</html>
