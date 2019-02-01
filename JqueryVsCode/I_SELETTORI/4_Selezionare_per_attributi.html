@@ -1,6 +1,27 @@
 <html>
-    <head></head>
+    <head>
+   
+
+    </head>
     <body>
-    <h2>I selettori</h2>
+        <h2>Selezionare per attributi</h2>
+        
+        <a>link 1</a>
+        <a target="_blank">link 2</a>
+        <a target="_blank" title="nuova pagina">link 1</a>
+        <!--script-->
+        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                debugger;
+              //selezione di attributi
+           var listalink1= $("a[target='_blank']"); //tutti i link che si aprono in nuove finestre
+           var listalink2= $("a[title^='nuova']"); //link con titolo che inizia per "nuova"
+           var listalink3= $("a[title$='pagina']"); //link con titolo che finisce per "pagina"
+           var listalink4= $("a[target!='_blank']"); //link che non aprano una nuova pagina del browser
+           var listalink5= $("a[target='_blank'][title='nuova pagina']"); //link che hanno piu attrivbuti valorizzati in un certo modo
+            });
+        </script>
     </body>
+
 </html>
