@@ -1,0 +1,40 @@
+<html>
+    <head>
+   
+
+    </head>
+    <body>
+        <h2>Gestire le classi</h2>
+  
+       <div id="primodiv" class="classe1 classe2">div di rimozione classi</div>
+        <!--script-->
+        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+        <script>
+          $(document).ready(function(){
+            debugger;
+            //METODI: hasclass addclass removeclass
+            //gestione classi
+            //Uno dei problemi maggiori legati alla manipolazione degli attributi 
+            //riguarda le classi ed in particolare la possibiltà di associarne più d’una ad un elemento 
+            //con la conseguente necessità di poterle eliminare singolarmente senza toccare le altre
+          var risposta=  $('div#primodiv').hasClass('classe1'); // metodo di controllo, ritorna true se l’elemento ha uan specifica classe
+          $('div#primodiv').addClass('classe3');// aggiungi una classe agli elementi
+          $('div#primodiv').removeClass('classe1');// rimuove una classe agli elementi
+         // $('div#primodiv').toggleClass();// : aggiunge una classe se già non presente, altrimenti la toglie
+
+            //Per tutti questi metodi è possibile indicare, oltre ad una singola classe, 
+            //anche due o più classi separate da una spazio ("miaClasse1 miaClasse2"). 
+            //Inoltre .toggleClass() permette anche di indicare un secondo parametro (true o false) per definire se aggiungere o togliere una classe
+            
+            //$("#menu li").toggleClass("miaClasse",true); //aggiungi sempre la classe
+
+
+            
+         
+           
+          });
+             
+        </script>
+    </body>
+
+</html>

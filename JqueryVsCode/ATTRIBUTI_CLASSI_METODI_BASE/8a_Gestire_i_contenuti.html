@@ -1,0 +1,50 @@
+<html>
+    <head>
+   
+
+    </head>
+    <body>
+        <h2>Gestire i contenuti</h2>
+  
+      <p><strong>QUESTO è IL TESTO CONTENUTO NEL PARAGRAFO</strong></p>  
+
+      <form id="form1">
+        <input type="text" value="nome">
+        <select id="combo1">
+        </select>
+      </form>
+        <!--script-->
+        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+        <script>
+          $(document).ready(function(){
+            //debugger;
+           var testo= $("p").text(); // "testo del paragrafo"
+           var testo2= $("p").html(); // "testo del <strong>paragrafo</strong>"
+
+            //<p>testo del <strong>paragrafo</strong></p>
+            //imposta testo
+            $("p").text("Nuovo testo <strong>HTML</strong>");
+            $("p").html("Nuovo testo con <strong>HTML</strong>");
+
+            //attraverso .val() sarete in grado di ottenere ed impostare i valore inseriti dall’utente nel form
+            //sia per quanto riguarda i campi di testo (text, password, textarea), sia per i campi select che per i campi radio e checkbox
+            //In modo analogo, per impostare i campi di un form basterà passare a .val() 
+            //una stringa oppure un array di stringhe nel caso di valori multipli per radio checkbox e select           
+          var valore= $("#form1 input[type='text']").val();
+           $("#form1 input[type='text']").val('cognome');
+           var Lista = [];
+           var Lista = ["http://www.html.it","http://www.google.it","http://www.yahoo.it"];
+           
+
+           var options = $("#combo1");
+           $.each(Lista, function(index, value) {
+               
+                options.append($("<option />").val(index).text(value));
+                });
+       
+          });
+             
+        </script>
+    </body>
+
+</html>

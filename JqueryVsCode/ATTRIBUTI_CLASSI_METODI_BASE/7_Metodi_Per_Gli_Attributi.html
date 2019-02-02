@@ -1,0 +1,66 @@
+<html>
+    <head>
+   
+
+    </head>
+    <body>
+        <h2>Metodi per gli attributi</h2>
+  
+        <a id="miolink" href="www.google.com"></a>
+        <a  href="www.google2.com"></a>
+
+        <ul id="menu" style="width:20%">
+          <li id="primo"><a href="www.google.com" >Voce di menu 1 </a></li>
+          <li id="secondo">Voce di menu 2
+            <ul>
+              <li><a href="www.yahoo.com" >Voce di sottomenu 1</a></li>
+              <li>Voce di sottomenu 2 </li>
+            </ul>
+          </li>
+          <li>Voce di menu 3
+            <ul>
+              <li>Voce di sottomenu 3 </li>
+            </ul>
+          </li>
+          <li>Voce di menu 4 </li>
+      </ul>
+        <!--script-->
+        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+        <script>
+          $(document).ready(function(){
+            debugger;
+            //METODI per attributi: attr removeattr
+          var href=  $("a#mioLink").attr("href"); //restituisce il valore di href
+          var href2=   $("a#mioLink").attr("href","http://www.html.it"); //imposta il valore di href
+    
+
+                $("a#mioLink").attr({
+                "href":"http://www.html2.it",
+                "target":"_blank"
+                }); //imposta il valore di href e del target
+            
+            //raccogliere la lista degli URL da una serie di tag a
+
+            var ListaURL = []; //array di base
+
+            $("#menu li a").each(function (i,el) {
+                ListaURL.push($(el).attr("href"))
+            });
+
+            //impostare il link di una serie di tag a in base alla posizione
+
+            var ListaURL = ["http://www.html.it","http://www.google.it","http://www.yahoo.it"];
+
+            $("#menu li a").attr("href",function (i,el) {
+                return ListaURL[i];
+            });
+
+              //rimuovere l'attributo target da tutti gli elementi della collezione
+            $("#menu li a").removeAttr("target");              
+           
+          });
+             
+        </script>
+    </body>
+
+</html>
